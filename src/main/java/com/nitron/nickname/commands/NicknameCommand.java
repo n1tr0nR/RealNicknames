@@ -28,17 +28,17 @@ public class NicknameCommand {
                                     if(nick.isEmpty()){
                                         component.setNickname("");
                                         component.setHasNickname(false);
-                                        player.sendMessage(Text.literal("Removed your nickname").formatted(Formatting.GRAY));
+                                        player.sendMessage(Text.literal("Removed your nickname").formatted(Formatting.GRAY), false);
                                     } else {
                                         int length = nick.length();
                                         if(length > Config.maxNick){
-                                            player.sendMessage(Text.literal("Nickname exceeds character limit").formatted(Formatting.RED));
+                                            player.sendMessage(Text.literal("Nickname exceeds character limit").formatted(Formatting.RED), false);
                                         } else if(nick.equals(" ")) {
-                                            player.sendMessage(Text.literal("Nickname cannot be empty").formatted(Formatting.RED));
+                                            player.sendMessage(Text.literal("Nickname cannot be empty").formatted(Formatting.RED), false);
                                         } else {
                                             component.setNickname(nick);
                                             component.setHasNickname(true);
-                                            player.sendMessage(Text.literal("Set nickname to: " + nick).formatted(Formatting.GRAY));
+                                            player.sendMessage(Text.literal("Set nickname to: " + nick).formatted(Formatting.GRAY), false);
                                         }
                                     }
                                     return Command.SINGLE_SUCCESS;
@@ -50,7 +50,7 @@ public class NicknameCommand {
                             PlayerNickComponent component = PlayerNickComponent.get(player);
                             component.setHasNickname(false);
                             component.setNickname("");
-                            player.sendMessage(Text.literal("Removed your nickname").formatted(Formatting.GRAY));
+                            player.sendMessage(Text.literal("Removed your nickname").formatted(Formatting.GRAY), false);
                             return Command.SINGLE_SUCCESS;
                         }))
                 .then(CommandManager.literal("color").requires((serverCommandSource -> {
@@ -63,7 +63,7 @@ public class NicknameCommand {
                                     PlayerNickComponent component = PlayerNickComponent.get(player);
                                     if(!Config.showColor){
                                         player.sendMessage(Text.literal("Changing your color has been disabled")
-                                                .formatted(Formatting.GRAY));
+                                                .formatted(Formatting.GRAY), false);
                                         return Command.SINGLE_SUCCESS;
                                     }
 
@@ -75,14 +75,14 @@ public class NicknameCommand {
                                         player.sendMessage(Text.literal("Changed name color to: ")
                                                 .formatted(Formatting.GRAY)
                                                 .append(Text.literal("0x" + color.toUpperCase())
-                                                        .setStyle(Style.EMPTY.withColor(fin)))
+                                                        .setStyle(Style.EMPTY.withColor(fin))), false
                                         );
 
                                     } else {
                                         component.setColor("");
                                         component.setHasColor(false);
                                         player.sendMessage(Text.literal("Should be a valid hex code, removed your color.")
-                                                .formatted(Formatting.GRAY));
+                                                .formatted(Formatting.GRAY), false);
                                     }
                                     return Command.SINGLE_SUCCESS;
                                 }))));
