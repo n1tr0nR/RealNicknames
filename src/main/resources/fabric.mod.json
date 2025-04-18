@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "nickname",
+	"version": "${version}",
+	"name": "Real Nickname",
+	"description": "A mod that makes changing your Display Name incredibly easy!",
+	"authors": [
+		"Nitron"
+	],
+	"license": "ARR",
+	"icon": "assets/nickname/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.nitron.nickname.RealNickname"
+		],
+		"fabric-datagen": [
+			"com.nitron.nickname.RealNicknameDataGenerator"
+		],
+		"cardinal-components": [
+			"com.nitron.nickname.cca.NicknameComponents"
+		],
+		"modmenu": [
+			"com.nitron.nickname.config.ModMenuInit"
+		]
+	},
+	"mixins": [
+		"nickname.mixins.json"
+	],
+	"custom": {
+		"cardinal-components": [
+			"nickname:nickname"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
