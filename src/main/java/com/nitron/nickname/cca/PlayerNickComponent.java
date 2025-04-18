@@ -1,11 +1,11 @@
 package com.nitron.nickname.cca;
 
+import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import dev.onyxstudios.cca.api.v3.component.tick.CommonTickingComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import org.jetbrains.annotations.NotNull;
-import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
-import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingComponent {
     private final PlayerEntity player;
@@ -28,7 +28,7 @@ public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingCo
     }
 
     @Override
-    public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
+    public void readFromNbt(NbtCompound nbtCompound) {
         this.hasNickname = nbtCompound.getBoolean("hasNickname");
         this.hasColor = nbtCompound.getBoolean("hasColor");
         this.nickname = nbtCompound.getString("nickname");
@@ -36,7 +36,7 @@ public class PlayerNickComponent implements AutoSyncedComponent, CommonTickingCo
     }
 
     @Override
-    public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
+    public void writeToNbt(NbtCompound nbtCompound) {
         nbtCompound.putBoolean("hasNickname", this.hasNickname);
         nbtCompound.putBoolean("hasColor", this.hasColor);
         nbtCompound.putString("nickname", this.nickname);
